@@ -1,0 +1,26 @@
+@import "reset-css/reset";
+@import "../svgsprite/css/sprite";
+
+html {
+	background-color: #bbd4eb;
+}
+
+h1 {
+	font-size: 2rem;
+}
+
+.icon-box {
+	margin: 0;
+	width: 100px;
+	height: 100px;
+	position: relative;
+	background: #ccc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath fill='%23fff' d='M6 0h6v6H6zM0 6h6v6H0z'/%3E%3C/svg%3E") top left repeat;
+	border: 1px solid #ccc;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+
+	i {
+		display: inline-block;
+	}
+}

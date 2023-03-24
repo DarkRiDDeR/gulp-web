@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>SVG CSS sprite preview | svg-sprite</title>
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+                color: #666;
+                background: #fafafa;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 1em;
+                line-height: 1.4;
+            }
+
+            header {
+                display: block;
+                padding: 3em 3em 2em;
+                background-color: #fff;
+            }
+
+            header p {
+                margin: 2em 0 0;
+            }
+
+            section {
+                border-top: 1px solid #eee;
+                padding: 2em 3em 0;
+            }
+
+            section ul {
+                margin: 0;
+                padding: 0;
+            }
+
+            section li {
+                display: inline-block;
+                background-color: #fff;
+                position: relative;
+                margin: 0 2em 2em 0;
+                vertical-align: top;
+                border: 1px solid #ccc;
+                padding: 1em 1em 3em;
+                cursor: default;
+            }
+
+            .icon-box {
+                margin: 0;
+                width: 144px;
+                height: 144px;
+                position: relative;
+                background: #ccc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath fill='%23fff' d='M6 0h6v6H6zM0 6h6v6H0z'/%3E%3C/svg%3E") top left repeat;
+                border: 1px solid #ccc;
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+            }
+
+            .icon {
+                display: inline-block;
+            }
+
+            h1 {
+                margin-top: 0;
+            }
+
+            h2 {
+                margin: 0;
+                padding: 0;
+                font-size: 1em;
+                font-weight: 400;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                position: absolute;
+                left: 1em;
+                right: 1em;
+                bottom: 1em;
+            }
+
+            footer {
+                display: block;
+                margin: 0;
+                padding: 0 3em 3em;
+            }
+
+            footer p {
+                margin: 0;
+                font-size: .7em;
+            }
+
+            footer a {
+                color: #0f7595;
+                margin-left: 0;
+            }
+
+            i {
+                text-indent: 200%;
+                white-space: nowrap;
+                overflow: hidden;
+                display: inline-block;
+                background-size: 1076px 814px !important;
+            }
+        </style>
+
+<!--
+Sprite CSS
+====================================================================================================
+This is an all-in-one inline version of the CSS necessary to use the SVG sprite.
+-->
+
+<style>
+.svg-arrow-bottom {
+    background: url("../img/sprite.svg") 54.59593023255813% 64.81833143435878% no-repeat;
+    width: 44px;
+    height: 24.1px;
+}
+.svg-arrow-left {
+    background: url("../img/sprite.svg") 28.818875119161106% 73.17272727272726% no-repeat;
+    width: 27px;
+    height: 44px;
+}
+.svg-arrow-right {
+    background: url("../img/sprite.svg") 31.392755004766443% 73.17272727272726% no-repeat;
+    width: 27px;
+    height: 44px;
+}
+.svg-arrow-top {
+    background: url("../img/sprite.svg") 58.859496124031004% 64.81833143435878% no-repeat;
+    width: 44px;
+    height: 24.1px;
+}
+.svg-clock {
+    background: url("../img/sprite.svg") 34.436068425630616% 72.91704413096932% no-repeat;
+    width: 41.3px;
+    height: 41.3px;
+}
+.svg-like {
+    background: url("../img/sprite.svg") 24.4443359375% 73.94094488188975% no-repeat;
+    width: 52px;
+    height: 52px;
+}
+.svg-menu {
+    background: url("../img/sprite.svg") 99.89893617021275% 0 no-repeat;
+    width: 512px;
+    height: 512px;
+}
+.svg-profile {
+    background: url("../img/sprite.svg") 0 0 no-repeat;
+    width: 563.43px;
+    height: 563.43px;
+}
+.svg-searcher {
+    background: url("../img/sprite.svg") 0 99.95387535702245% no-repeat;
+    width: 250.31px;
+    height: 250.31px;
+}
+.svg-speech-bubble {
+    background: url("../img/sprite.svg") 38.12176414189837% 72.14212548015364% no-repeat;
+    width: 33px;
+    height: 33px;
+}
+</style>
+
+<!--
+====================================================================================================
+-->
+
+    </head>
+    <body>
+        <header>
+            <h1>SVG CSS sprite preview</h1>
+            <p>This preview features the generated SVG file as a conventional CSS sprite. The shapes are displayed as background images of several <code>&lt;i&gt;</code> elements.</p>
+        </header>
+        <section>
+
+<!--
+Conventional CSS sprite
+====================================================================================================
+This technique uses CSS classes to display portions of the sprite as background image of
+appropriately sized elements.
+-->
+
+            <ul>
+             <li title="arrow-bottom">
+                    <div class="icon-box">
+                        <i class="svg-arrow-bottom">arrow-bottom</i>
+                    </div>
+                    <h2>arrow-bottom, </h2>
+                </li>
+             <li title="arrow-left">
+                    <div class="icon-box">
+                        <i class="svg-arrow-left">arrow-left</i>
+                    </div>
+                    <h2>arrow-left, </h2>
+                </li>
+             <li title="arrow-right">
+                    <div class="icon-box">
+                        <i class="svg-arrow-right">arrow-right</i>
+                    </div>
+                    <h2>arrow-right, </h2>
+                </li>
+             <li title="arrow-top">
+                    <div class="icon-box">
+                        <i class="svg-arrow-top">arrow-top</i>
+                    </div>
+                    <h2>arrow-top, </h2>
+                </li>
+             <li title="clock">
+                    <div class="icon-box">
+                        <i class="svg-clock">clock</i>
+                    </div>
+                    <h2>clock, </h2>
+                </li>
+             <li title="like">
+                    <div class="icon-box">
+                        <i class="svg-like">like</i>
+                    </div>
+                    <h2>like, </h2>
+                </li>
+             <li title="menu">
+                    <div class="icon-box">
+                        <i class="svg-menu">menu</i>
+                    </div>
+                    <h2>menu, </h2>
+                </li>
+             <li title="profile">
+                    <div class="icon-box">
+                        <i class="svg-profile">profile</i>
+                    </div>
+                    <h2>profile, </h2>
+                </li>
+             <li title="searcher">
+                    <div class="icon-box">
+                        <i class="svg-searcher">searcher</i>
+                    </div>
+                    <h2>searcher, </h2>
+                </li>
+             <li title="speech-bubble">
+                    <div class="icon-box">
+                        <i class="svg-speech-bubble">speech-bubble</i>
+                    </div>
+                    <h2>speech-bubble, </h2>
+                </li>
+            </ul>
+
+<!--
+====================================================================================================
+-->
+
+        </section>
+        <footer>
+            <p>Generated at Thu, 23 Mar 2023 17:21:50 GMT by <a href="https://github.com/svg-sprite/svg-sprite" target="_blank" rel="noopener noreferrer">svg-sprite</a>.</p>
+        </footer>
+    </body>
+</html>
