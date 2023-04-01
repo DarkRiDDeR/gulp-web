@@ -40,6 +40,7 @@
     "gulp-zip": "^5.1.0",
     "imagemin-gifsicle": "^7.0.0",
     "postcss": "^8.4.21",
+    "postcss-calc": "^8.2.4",
     "sass": "^1.59.3",
     "webp-converter": "2.2.3",
     "webpack": "^5.76.3",

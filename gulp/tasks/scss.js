@@ -6,12 +6,15 @@ import autoprefixer from 'autoprefixer'
 import cssnano from 'cssnano'
 import webpcss from 'gulp-webpcss'
 import sourcemaps from 'gulp-sourcemaps'
+import calc from 'postcss-calc'
 //import log from 'fancy-log'
 
 const sass = gulpSass(dartSass)
 
 export const scss = () => {
-	let postcssPlugins = []
+	let postcssPlugins = [
+		calc(),
+	]
 	if ( app.isBuild )
 		postcssPlugins = postcssPlugins.concat([
 			autoprefixer({
@@ -44,10 +47,15 @@ export const scss = () => {
 			includePaths: ['node_modules'],
 		}))
 		.pipe(postcss(postcssPlugins))
-		.pipe(webpcss({
-			webpcss: '.webp',
-			noWebpCss: '.no-webp'
-		}))
+		.pipe(
+			app.plugins.if(
+				app.isBuild,
+				webpcss({
+					webpcss: '.webp',
+					noWebpCss: '.no-webp'
+				})
+			)
+		)
 		.pipe(rename({
 			extname: '.min.css'
 		}))
