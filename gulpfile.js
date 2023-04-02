@@ -18,7 +18,7 @@ import { scss } from './gulp/tasks/scss.js'
 import { js } from './gulp/tasks/js.js'
 import { images } from './gulp/tasks/images.js'
 import { svgSprite, svgSpriteDist } from './gulp/tasks/svgsprite.js'
-import { otfToTtf, ttfToWoff } from './gulp/tasks/fonts.js'
+import { fonts, fontTtfToWoff, fontOtfToTtf } from './gulp/tasks/fonts.js'
 import { zip } from './gulp/tasks/zip.js'
 
 
@@ -30,13 +30,14 @@ function watcher() {
 	gulp.watch(path.watch.images, images)
 }
 
-const fonts = gulp.series(otfToTtf, ttfToWoff)
-const mainTasks = gulp.series(fonts, gulp.parallel(copy, html, scss, js, images, svgSpriteDist))
+const genFontTypes = gulp.series(fontTtfToWoff, fontOtfToTtf)
+const mainTasks = gulp.series(gulp.parallel(copy, html, scss, js, images, fonts, svgSpriteDist))
 
 const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server))
 const build = gulp.series(reset, mainTasks)
 const deployZip = gulp.series(reset, mainTasks, zip)
 
+export { genFontTypes }
 export { svgSprite }
 export { dev }
 export { build }
