@@ -1,11 +1,11 @@
 import dartSass from 'sass'
 import gulpSass from 'gulp-sass'
 import rename from 'gulp-rename'
+import webpcss from 'gulp-webpcss'
+import sourcemaps from 'gulp-sourcemaps'
 import postcss from 'gulp-postcss'
 import autoprefixer from 'autoprefixer'
 import cssnano from 'cssnano'
-import webpcss from 'gulp-webpcss'
-import sourcemaps from 'gulp-sourcemaps'
 import calc from 'postcss-calc'
 //import log from 'fancy-log'
 
@@ -29,12 +29,13 @@ export const scss = () => {
 	//log(postcssPlugins)
 
 	return app.gulp.src(app.path.src.scss, { sourcemaps: app.isDev })
-		.pipe(app.plugins.plumber(
-			app.plugins.notify.onError({
-				title: 'SCSS',
-				message: 'Error: <%= error.message %>'
-			})
-		))
+		.pipe(app.plugins.plumber({
+			errorHandler:
+				app.plugins.notify.onError({
+					title: 'SCSS',
+					message: 'Error: <%= error.message %>'
+				})
+		}))
 		.pipe(
 			app.plugins.if(
 				app.isDev,
