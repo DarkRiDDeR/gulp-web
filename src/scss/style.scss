@@ -1,9 +1,22 @@
-@import "reset-css/reset";
+@import "reset";
 @import "../svgsprite/css/sprite";
 
-html {
+html, body {
 	background-color: #bbd4eb;
+	height: 100%;
 }
+.content-wrap {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+.content {
+	flex: 1 0 auto;
+}
+footer {
+	flex: 0 0 auto;
+}
+
 
 h1 {
 	font-size: 2rem;

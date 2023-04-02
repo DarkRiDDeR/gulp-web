@@ -1,0 +1,43 @@
+@import "reset-css/reset";
+
+
+/*
+Reset CSS
+
+https://andy-bell.co.uk/a-modern-css-reset/
+*/
+*,*::before,*::after {
+	box-sizing: border-box;
+}
+html:focus-within {
+	scroll-behavior: smooth;
+ }
+ /**
+ Next up: body styles. I keep this really simple. It’s useful for the <body> to fill the viewport, even when empty, so I do that by setting the min-height to 100vh.
+
+I only set two text styles. I set the line-height to be 1.5 because the default 1.2 just isn’t big enough to have accessible, readable text. I also set text-rendering to optimizeSpeed.
+
+Using optimizeLegibility makes your text look nicer, but can have serious performance issues such as 30 second loading delays, so I try to avoid that now. I do sometimes add it to sections of microcopy though.
+*/
+ body {
+	min-height: 100vh;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+	text-size-adjust:100%; // property controls the text inflation algorithm used on some smartphones and tablets. Other browsers will ignore this property.
+ }
+/* removes the cross in IE input fields to clear the field */
+input::-ms-clear{ 
+	display: none;
+}
+/* @media query that resets animations, transitions and scroll behaviour if the user prefers reduced motion. */
+img {
+	max-width: 100%;
+	display: block;
+ }
+a,a:visited{
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: none;
+}
+button::-moz-focus-inner{padding:0;border:0;}
