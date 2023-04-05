@@ -1,0 +1,110 @@
+/**
+Copyright 2020 Halil İbrahim Çakıroğlu
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+Site: https://github.com/selfishprimate/gerillass/
+*/
+/*
+font-weight:
+	100 - thin
+	200 - UltraLite
+	300 - lite
+	400 - normal
+	500 - medium
+	600 - semibold
+	700 - bold
+	800 - Heavy
+	900 - black
+
+  Example:
+
+  @include font-face("PTSans", "../fonts/pt_sans/PTSans-Regular", normal, 500, woff2 woff ttf);
+*/
+
+@charset "UTF-8";
+
+$map-for-font-formats: (
+  "eot": format("embedded-opentype"),
+  "woff2": format("woff2"),
+  "woff": format("woff"),
+  "ttf": format("truetype"),
+  "svg": format("svg"),
+) !default;
+
+@function __clearWhitespace($string) {
+  @while (str-index($string, " ") != null) {
+    $index: str-index($string, " ");
+    $string: "#{str-slice($string, 0, $index - 1)}#{str-slice($string, $index + 1)}";
+  }
+  @return $string;
+}
+
+@function __fontSource($font-family, $file-path, $file-formats) {
+	$list: ();
+	@if map-has-key($map-for-font-formats, $file-formats) {
+	  @if index(eot woff2 woff ttf, $file-formats) {
+		 $src-value: url('#{$file-path}.#{if(not index(eot, $file-formats), $file-formats, $file-formats+"?#iefix")}')
+			#{map-get($map-for-font-formats, $file-formats)};
+		 $list: append($list, $src-value, comma);
+	  } @else if index(svg, $file-formats) {
+		 $font-family: __clearWhitespace($font-family);
+		 $src-value: url('#{$file-path}.#{$file-formats + "#" + $font-family}')
+			#{map-get($map-for-font-formats, $file-formats)};
+		 $list: append($list, $src-value, comma);
+	  }
+	}
+	@return $list;
+ }
+@mixin font-face(
+  $font-family,
+  $file-path,
+  $font-style: normal,
+  $font-weight: 400,
+  $file-formats: eot woff2 woff ttf svg
+) {
+  @if & {
+    @error "You must call the mixin at the root level of your style sheet, not in the `#{&+'{'+'}'}` selector.";
+  } @else {
+    
+    $list: ();
+
+    @if index(100 200 300 400 500 600 700 800 900, $font-style) {
+      $font-weight: $font-style;
+      $font-style: normal;
+    } @else if not
+      index("normal" "italic" "oblique", $font-style) and
+      type-of($font-style) !=
+      "number"
+    {
+      $font-style-list: ();
+      @for $i from 1 through length($font-style) {
+        $font-style-list: append($font-style-list, nth($font-style, $i), comma);
+      }
+      @for $i from 1 through length($font-style-list) {
+        @if index("eot" "woff2" "woff" "ttf" "svg", nth($font-style-list, $i)) {
+          $file-formats: $font-style-list;
+          $font-style: normal;
+        }
+      }
+    }
+
+    @font-face {
+      font-family: $font-family;
+      @if index($file-formats, eot) {
+        src: url("#{$file-path}.eot");
+      }
+      @for $i from 1 through length($file-formats) {
+        $list: append($list, __fontSource($font-family, $file-path, nth($file-formats, $i)), comma);
+      }
+      src: $list;
+      font-style: $font-style;
+      font-weight: $font-weight;
+      @content;
+    }
+  }
+}
