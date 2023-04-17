@@ -1,3 +1,6 @@
+@use "grid" with (
+	$generateOffset: 0
+);
 @import "reset";
 @import "mixin/fontFace";
 @import "../svgsprite/css/sprite";

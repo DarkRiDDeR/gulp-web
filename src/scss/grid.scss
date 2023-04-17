@@ -1,0 +1,152 @@
+/**
+Mustard UI
+
+MIT License
+
+Copyright (c) 2018 Kyle Logue
+
+https://github.com/kylelogue/mustard-ui
+
+docs: https://kylelogue.github.io/mustard-ui/docs/flexbox-grid/index.html
+*/
+
+// BREAKPOINT VARS
+// ==============================
+
+$bp-small: 425px !default;
+$bp-medium: 768px !default;
+$bp-large: 1024px !default;
+$bp-xlarge: 1440px !default;
+$generateOffset: 0 !default;
+$col-count: 12 !default;
+$col-spacing: 0.5em !default;
+$row-spacing: 0.5em !default;
+
+
+// BREAKPOINT MIXINS
+// ==============================
+
+@mixin breakpoint-min($bp) {
+	@media (min-width: $bp) {
+		@content;
+	}
+}
+
+@mixin breakpoint-max($bp) {
+	@media (max-width: $bp) {
+		@content;
+	}
+}
+
+@mixin breakpoint-min-max($bp1, $bp2) {
+	@media (min-width: $bp1) and (max-width: $bp2) {
+		@content;
+	}
+}
+
+// GRID
+// ==============================
+
+
+.row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin-top: 15px;
+	margin-bottom: 15px;
+
+	&.row-reverse {
+		flex-direction: row-reverse;
+	}
+
+	.col {
+		flex-grow: 1;
+		flex-basis: 100%;
+		max-width: 100%;
+		padding: calc($row-spacing/2) calc($col-spacing/2);
+
+		&.col-reverse {
+			flex-direction: column-reverse;
+		}
+	}
+
+	@for $i from 1 through $col-count {
+		.col-xs-#{$i} {
+			flex-basis: calc($i / $col-count) * 100%;
+			max-width: calc($i / $col-count) * 100%;
+		}
+	}
+	@if $generateOffset != 0 {
+		@for $i from 1 through $col-count {
+			.col-xs-offset-#{$i} {
+				margin-left: calc($i / $col-count) * 100%;
+			}
+		}
+	}
+
+	@include breakpoint-min($bp-small) {
+		@for $i from 1 through $col-count {
+			.col-sm-#{$i} {
+				flex-basis: calc($i / $col-count) * 100%;
+				max-width: calc($i / $col-count) * 100%;
+			}
+		}
+		@if $generateOffset != 0 {
+			@for $i from 1 through $col-count {
+				.col-sm-offset-#{$i} {
+					margin-left: calc($i / $col-count) * 100%;
+				}
+			}
+		}
+	}
+
+	@include breakpoint-min($bp-medium) {
+		@for $i from 1 through $col-count {
+			.col-md-#{$i} {
+				flex-basis: calc($i / $col-count) * 100%;
+				max-width: calc($i / $col-count) * 100%;
+			}
+		}
+		@if $generateOffset != 0 {
+			@for $i from 1 through $col-count {
+				@for $i from 1 through $col-count {
+					.col-md-offset-#{$i} {
+						margin-left: calc($i / $col-count) * 100%;
+					}
+				}
+			}
+		}
+	}
+
+	@include breakpoint-min($bp-large) {
+		@for $i from 1 through $col-count {
+			.col-lg-#{$i} {
+				flex-basis: calc($i / $col-count) * 100%;
+				max-width: calc($i / $col-count) * 100%;
+			}
+		}
+		@if $generateOffset != 0 {
+			@for $i from 1 through $col-count {
+				.col-lg-offset-#{$i} {
+					margin-left: calc($i / $col-count) * 100%;
+				}
+			}
+		}
+	}
+
+	@include breakpoint-min($bp-xlarge) {
+		@for $i from 1 through $col-count {
+			.col-xlg-#{$i} {
+				flex-basis: calc($i / $col-count) * 100%;
+				max-width: calc($i / $col-count) * 100%;
+			}
+		}
+		@if $generateOffset != 0 {
+			@for $i from 1 through $col-count {
+				.col-xlg-offset-#{$i} {
+					margin-left: calc($i / $col-count) * 100%;
+				}
+			}
+		}
+	}
+}
